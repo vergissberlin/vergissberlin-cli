@@ -1,6 +1,6 @@
 # Vergissberlin
 
-TODO: Write a gem description
+Some hot useles stuff!
 
 ## Installation
 
@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+what ever u want!
 
 ## Contributing
 

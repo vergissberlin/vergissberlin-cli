@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+#require 'capistrano/cli'
+#Capistrano::CLI.execute
+
+puts "You ar so cool!"

@@ -21,11 +21,11 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
 
-	spec.files					= Dir.glob("{bin,lib,examples,test}/**/*") + %w(README MIT-LICENSE CHANGELOG)
+	spec.files					= Dir.glob("{bin,lib,examples,test}/**/*") + %w(README.md)
   spec.has_rdoc				= true
 
   spec.bindir					= "bin"
-  spec.executables << "vergissberlin"
+  spec.executables << "vergissberlin" << "programmerq"
 
 	spec.add_dependency 'capistrano' , '~>  2.15.2'
   spec.add_dependency 'capistrano-ext','~> 1.2.1'

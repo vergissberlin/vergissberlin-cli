@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
   spec.has_rdoc				= true
 
   spec.bindir					= "bin"
-  spec.executables << "vergissberlin" << "programmerq"
+  spec.executables << "vergissberlin"
 
 	spec.add_dependency 'capistrano' , '~>  2.15.2'
   spec.add_dependency 'capistrano-ext','~> 1.2.1'

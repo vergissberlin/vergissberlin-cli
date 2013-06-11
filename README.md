@@ -17,7 +17,8 @@ Or install it yourself as:
     $ gem install vergissberlin
 
 ## Dependency
-![image](gem_grap.png)
+![image](blob/master/gem_graph.png)
+
 
 ## Usage
 

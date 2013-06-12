@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Vergissberlin::VERSION
   spec.authors       = ["André Lademann"]
   spec.email         = ["andre@programmerq.eu"]
-  spec.description   = %q{This is a useless tool witho no functionality!}
-  spec.summary       = %q{This is a useless tool witho no functionality!}
+  spec.description   = %q{This is a useless tool without any features! Trust me!}
+  spec.summary       = %q{This is a useless tool without any features!}
   spec.homepage      = "https://github.com/vergissberlin/vergissberlin"
   spec.license       = "MIT"
 

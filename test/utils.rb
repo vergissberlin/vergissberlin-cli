@@ -7,7 +7,8 @@ unless defined?(TestExtensions)
   rescue LoadError
   end
 
-  require 'test/unit'
+	require 'minitest/autorun'
   require 'mocha/setup'
+
 
 end

@@ -1,3 +1,7 @@
+require 'coveralls'
+Coveralls.wear!
+
+
 unless defined?(TestExtensions)
   $:.unshift "#{File.dirname(__FILE__)}/../lib"
   begin

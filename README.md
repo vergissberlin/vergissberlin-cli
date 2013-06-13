@@ -1,6 +1,7 @@
 # Vergissberlin
 
 Some hot useles stuff!
+[![Build Status](https://travis-ci.org/vergissberlin/vergissberlin.png?branch=master)](https://travis-ci.org/vergissberlin/vergissberlin)
 
 ## Installation
 

@@ -1,8 +1,8 @@
 require 'bundler'
 
 Bundler::GemHelper.install_tasks
-
 require 'rake/testtask'
+
 
 group :test do
   gem "minitest"
@@ -11,10 +11,10 @@ group :test do
 end
 
 
-#Rake::TestTask.new(:test) do |test|
-#  test.libs << 'lib' << 'test'
-#  test.pattern = 'test/**/*_test.rb'
-#  test.verbose = true
-#end
+Rake::TestTask.new(:test) do |test|
+  test.libs << 'lib' << 'test'
+  test.pattern = 'test/**/*_test.rb'
+  test.verbose = true
+end
 
-#task :default => :test
+task :default => :test

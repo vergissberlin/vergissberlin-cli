@@ -1,7 +1,16 @@
 # Vergissberlin
 
 Some hot useles stuff!
+
+
 [![Build Status](https://travis-ci.org/vergissberlin/vergissberlin.png?branch=master)](https://travis-ci.org/vergissberlin/vergissberlin)
+
+
+[![Build Status](https://secure.travis-ci.org/vergissberlin/vergissberlin.png)](http://travis-ci.org/vergissberlin/vergissberlin)
+[![Dependency Status](https://gemnasium.com/vergissberlin/vergissberlinpng)](https://gemnasium.com/vergissberlin/vergissberlin)
+[![Code Climate](https://codeclimate.com/github/vergissberlin/vergissberlin.png)](https://codeclimate.com/github/vergissberlin/vergissberlin)
+[![Coverage Status](https://coveralls.io/repos/vergissberlin/vergissberlin/badge.png?branch=master)](https://coveralls.io/r/vergissberlin/vergissberlin)
+
 
 ## Installation
 

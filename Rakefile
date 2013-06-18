@@ -10,6 +10,9 @@ Rake::TestTask.new(:test) do |test|
   test.verbose = true
 end
 
+require 'coveralls/rake/task'
+Coveralls::RakeTask.new
+
 task :default => :test
 
 

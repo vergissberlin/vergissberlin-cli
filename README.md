@@ -1,6 +1,6 @@
 # Vergissberlin
 
-Some hot useles stuff!
+Some hot useles stuff! Trust me, there is no functionality!
 
 
 [![Build Status](https://travis-ci.org/vergissberlin/vergissberlin.png?branch=master)](https://travis-ci.org/vergissberlin/vergissberlin)

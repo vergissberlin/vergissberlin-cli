@@ -14,6 +14,3 @@ require 'coveralls/rake/task'
 Coveralls::RakeTask.new
 
 task :default => :test
-
-
-

@@ -1,8 +1,11 @@
-require "#{File.dirname(__FILE__)}/../utils"
+require_relative '../utils'
+
+#require "#{File.dirname(__FILE__)}/../utils"
+#require 'minitest/autorun'
 
 
-## Version Controll
-# require '#{File.dirname(__FILE__)}/../cases/version_case.rb'
-require "#{File.dirname(__FILE__)}/../cases/minitest_case"
+## Version Control
+#require '#{File.dirname(__FILE__)}/../cases/version_case.rb'
+require_relative "../cases/minitest_case"
 
 

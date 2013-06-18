@@ -1,4 +1,9 @@
 require 'coveralls'
+require 'minitest/autorun'
+require 'minitest/pride'
+
+require File.expand_path('../../lib/vergissberlin.rb', __FILE__)
+
 Coveralls.wear!
 
 

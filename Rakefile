@@ -1,19 +1,15 @@
+#!/usr/bin/env rake
 require "bundler/gem_tasks"
 
-# require 'rake/testtask'
+require 'rake/testtask'
+ 
+Rake::TestTask.new(:test) do |test|
+  test.libs << 'lib' << 'test'
+  test.pattern = 'test/**/*_test.rb'
+  test.verbose = true
+end
+
+task :default => :test
 
 
-#group :test do
-#  gem "minitest"
-#  gem "minitest-reporters", '>= 0.5.0'
-#  gem "redgreen"
-#end
 
-
-#Rake::TestTask.new(:test) do |test|
-#  test.libs << 'lib' << 'test'
-#  test.pattern = 'test/**/*_test.rb'
-#  test.verbose = true
-#end
-
-#task :default => :test

@@ -1,6 +1,6 @@
-require "#{File.dirname(__FILE__)}/../../lib/vergissberlin"
+require_relative '../utils'
 
-class TestMeme < MiniTest::Unit::TestCase
+class TestMeme < Minitest::Test
   def setup
     @meme = Vergissberlin::Meme.new
   end

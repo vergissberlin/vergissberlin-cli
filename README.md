@@ -30,7 +30,7 @@ Or install it yourself as:
 
 ## Usage
 
-What ever u want!
+    $ vergissberlin
 
 ## Contributing
 

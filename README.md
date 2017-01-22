@@ -8,7 +8,6 @@ Some hot useles stuff! Trust me, there is no functionality!
 [![Dependency Status](https://gemnasium.com/vergissberlin/vergissberlin.png)](https://gemnasium.com/vergissberlin/vergissberlin)
 [![Code Climate](https://codeclimate.com/github/vergissberlin/vergissberlin.png)](https://codeclimate.com/github/vergissberlin/vergissberlin)
 [![Coverage Status](https://coveralls.io/repos/vergissberlin/vergissberlin/badge.png?branch=master)](https://coveralls.io/r/vergissberlin/vergissberlin)
-[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/857fba632a5e514065b83540dc2d72b4 "githalytics.com")](http://githalytics.com/vergissberlin/vergissberlin)
 [![Analytics](https://ga-beacon.appspot.com/UA-35739360-2/vergissberlin/vergissberlin)](https://github.com/vergissberlin/vergissberlin)
 [![Inline docs](http://inch-ci.org/github/vergissberlin/vergissberlin.svg?branch=master)](http://inch-ci.org/github/vergissberlin/vergissberlin)
 

@@ -3,6 +3,7 @@
 Some hot useles stuff! Trust me, there is no functionality!
 
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/47c04ed87749b6107bf7e6baa7f0224a)](https://www.codacy.com/app/andre_1725/vergissberlin?utm_source=github.com&utm_medium=referral&utm_content=vergissberlin/vergissberlin&utm_campaign=badger)
 [![Build Status](https://travis-ci.org/vergissberlin/vergissberlin.png?branch=master)](https://travis-ci.org/vergissberlin/vergissberlin)
 [![Gem Version](https://badge.fury.io/rb/vergissberlin.png)](http://badge.fury.io/rb/vergissberlin)
 [![Dependency Status](https://gemnasium.com/vergissberlin/vergissberlin.png)](https://gemnasium.com/vergissberlin/vergissberlin)

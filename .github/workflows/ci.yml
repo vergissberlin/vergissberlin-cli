@@ -26,13 +26,27 @@ jobs:
     - name: Install dependencies
       run: |
         cp Gemfile.production Gemfile
+        # Temporarily enable coveralls for CI
+        sed -i 's/# spec.add_development_dependency "coveralls"/spec.add_development_dependency "coveralls"/' vergissberlin.gemspec
         bundle install
     
     - name: Run tests
-      run: bundle exec rake test
+      run: |
+        # Enable coveralls in test utils for CI
+        sed -i 's/# require '\''coveralls'\''/require '\''coveralls'\''/' test/utils.rb
+        sed -i 's/# Coveralls.wear!/Coveralls.wear!/' test/utils.rb
+        bundle exec rake test
     
     - name: Upload coverage to Coveralls
       if: matrix.ruby-version == '3.3'
-      run: bundle exec rake coveralls:push
+      run: |
+        # Enable coveralls for CI
+        sed -i 's/# spec.add_development_dependency "coveralls"/spec.add_development_dependency "coveralls"/' vergissberlin.gemspec
+        sed -i 's/# require '\''coveralls\/rake\/task'\''/require '\''coveralls\/rake\/task'\''/' Rakefile
+        sed -i 's/# Coveralls::RakeTask.new/Coveralls::RakeTask.new/' Rakefile
+        sed -i 's/# require '\''coveralls'\''/require '\''coveralls'\''/' test/utils.rb
+        sed -i 's/# Coveralls.wear!/Coveralls.wear!/' test/utils.rb
+        bundle install
+        bundle exec rake coveralls:push
       env:
         COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}

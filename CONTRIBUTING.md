@@ -72,8 +72,12 @@ gem install vergissberlin-1.0.0.gem
 vergissberlin --help
 ```
 
-### 5. GitHub Release erstellen
+### 5. Release auslösen
 
+**Option A: Automatisches Release (empfohlen)**
+Nach dem Pushen des Tags wird die GitHub Action automatisch ausgelöst und das Gem zu RubyGems veröffentlicht.
+
+**Option B: GitHub Release erstellen**
 1. Gehe zu [GitHub Releases](https://github.com/vergissberlin/vergissberlin-cli/releases)
 2. Klicke auf "Create a new release"
 3. Wähle den erstellten Tag (z.B. `v1.0.0`)

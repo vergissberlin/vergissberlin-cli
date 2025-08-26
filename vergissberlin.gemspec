@@ -8,21 +8,23 @@ Gem::Specification.new do |spec|
   spec.version       = Vergissberlin::VERSION
   spec.authors       = ["André Lademann"]
   spec.email         = ["andre@programmerq.eu"]
-  spec.description   = %q{This is a useless tool without any features! Trust me!}
   spec.summary       = %q{This is a useless tool without any features!}
+  spec.description   = %q{This is a useless tool without any features! Trust me!}
   spec.homepage      = "https://github.com/vergissberlin/vergissberlin"
   spec.license       = "MIT"
-  spec.files         = `git ls-files`.split($/)
-  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
-	spec.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  spec.require_paths = ["lib"]
-	spec.files					= Dir.glob("{bin,lib,examples,test}/**/*") + %w(README.md)
-  spec.has_rdoc				= true
-  spec.bindir					= "bin"
-  spec.executables << "vergissberlin"
 
-  spec.add_development_dependency "bundler", "~> 1.3"
-  spec.add_development_dependency "minitest", "~> 5.0.4"
-  spec.add_development_dependency "rake", "~> 10.0.4"
-  spec.add_development_dependency "coveralls", "~> 0.6.7"
+  # Dateien und Ausführbares
+  spec.files         = Dir.chdir(File.expand_path(__dir__)) { `git ls-files -z`.split("\x0") }
+  spec.bindir        = "bin"
+  spec.executables   = Dir.children("bin").grep_v(/\.\./)
+  spec.require_paths = ["lib"]
+
+  # Mindestanforderungen
+  spec.required_ruby_version = ">= 2.7"
+
+  # Entwicklungs-Abhängigkeiten (modernisiert, ungebundene Major-Mindestversionen mit pessimistischem Operator)
+  spec.add_development_dependency "bundler", ">= 2.3", "< 3.0"
+  spec.add_development_dependency "rake", ">= 13.0", "< 14.0"
+  spec.add_development_dependency "minitest", ">= 5.18", "< 6.0"
+  spec.add_development_dependency "coveralls", ">= 0.8", "< 1.0"
 end

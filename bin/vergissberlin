@@ -1,4 +1,38 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'optparse'
+
+begin
+  require 'vergissberlin/version'
+rescue LoadError
+  # Falls lokal ohne Installation ausgeführt
+  $LOAD_PATH.unshift File.expand_path('../lib', __dir__)
+  require 'vergissberlin/version'
+end
+
+options = {}
+parser = OptionParser.new do |opts|
+  opts.banner = "Usage: vergissberlin [options]"
+
+  opts.on('-v', '--version', 'Show version') do
+    options[:version] = true
+  end
+
+  opts.on('-h', '--help', 'Show help') do
+    options[:help] = true
+  end
+end
+
+parser.parse!(ARGV)
+
+if options[:help]
+  puts parser
+  exit 0
+elsif options[:version]
+  puts Vergissberlin::VERSION
+  exit 0
+end
 
 print <<EOF
 

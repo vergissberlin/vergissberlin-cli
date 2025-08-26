@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Mindestanforderungen
-  spec.required_ruby_version = ">= 2.7"
+  spec.required_ruby_version = ">= 3.2"
 
   # Entwicklungs-Abhängigkeiten (modernisiert, ungebundene Major-Mindestversionen mit pessimistischem Operator)
   spec.add_development_dependency "bundler", ">= 2.3", "< 3.0"

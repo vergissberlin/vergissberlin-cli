@@ -1,0 +1,37 @@
+name: Release
+
+on:
+  push:
+    tags: [ 'v*' ]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: Debug info
+      run: |
+        echo "GitHub ref: ${{ github.ref }}"
+        echo "GitHub ref type: ${{ github.ref_type }}"
+        echo "Tag name: ${{ github.ref_name }}"
+    
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.3'
+        bundler-cache: true
+    
+    - name: Install dependencies
+      run: bundle install
+    
+    - name: Build gem
+      run: gem build vergissberlin.gemspec
+    
+    - name: Publish to RubyGems
+      run: gem push vergissberlin-*.gem
+      env:
+        RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}

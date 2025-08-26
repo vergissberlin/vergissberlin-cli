@@ -3,11 +3,8 @@ name: CI/CD Pipeline
 on:
   push:
     branches: [ main, master ]
-    tags: [ 'v*' ]
   pull_request:
     branches: [ main, master ]
-  release:
-    types: [ published ]
 
 jobs:
   test:
@@ -37,30 +34,3 @@ jobs:
       run: bundle exec rake coveralls:push
       env:
         COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
-
-  release:
-    needs: test
-    runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/v') || (github.event_name == 'release' && github.event.action == 'published')
-    
-    steps:
-    - uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-    
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: '3.3'
-        bundler-cache: true
-    
-    - name: Install dependencies
-      run: bundle install
-    
-    - name: Build gem
-      run: gem build vergissberlin.gemspec
-    
-    - name: Publish to RubyGems
-      run: gem push vergissberlin-*.gem
-      env:
-        RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}

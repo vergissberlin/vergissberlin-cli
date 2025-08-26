@@ -74,7 +74,7 @@ This is a Ruby CLI gem project called "vergissberlin" that provides a useless to
 - Keep the gem lightweight and focused
 - Maintain backward compatibility when possible
 - Follow Ruby gem conventions
-- Use meaningful commit messages
+- Use Conventional Commits for commit messages
 - Document public APIs
 
 ### Error Handling
@@ -100,3 +100,9 @@ This is a Ruby CLI gem project called "vergissberlin" that provides a useless to
 - Provide clear explanations for technical decisions
 - Suggest improvements when appropriate
 - Help maintain code quality and consistency
+
+## Commit Messages
+- Always write commit messages in English
+- Use Conventional Commits format
+- Keep messages clear and descriptive
+- Use imperative mood ("add" not "added")

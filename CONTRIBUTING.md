@@ -155,13 +155,13 @@ If you want to publish gems manually from your local machine:
 
 ### Code Style
 - Use 2 spaces for indentation
-- Write meaningful commit messages
+- Use Conventional Commits for commit messages
 - Add tests for new features
 
 ### Pull Request Process
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
+3. Commit your changes using Conventional Commits
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Create a Pull Request
 
@@ -169,6 +169,77 @@ If you want to publish gems manually from your local machine:
 - Use the issue templates
 - Describe the problem clearly and completely
 - Add steps to reproduce
+
+## Conventional Commits
+
+We use [Conventional Commits](https://www.conventionalcommits.org/) for commit messages to ensure clear and standardized communication about changes.
+
+**Important**: All commit messages must be written in English, regardless of the language used in other project communications.
+
+### Commit Message Format
+
+```
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+### Types
+
+- **feat**: A new feature
+- **fix**: A bug fix
+- **docs**: Documentation only changes
+- **style**: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+- **refactor**: A code change that neither fixes a bug nor adds a feature
+- **perf**: A code change that improves performance
+- **test**: Adding missing tests or correcting existing tests
+- **chore**: Changes to the build process or auxiliary tools and libraries such as documentation generation
+
+### Examples
+
+```bash
+# New feature
+git commit -m "feat: add version command to CLI"
+
+# Bug fix
+git commit -m "fix: resolve bundler dependency issue"
+
+# Documentation
+git commit -m "docs: update installation instructions"
+
+# Breaking change
+git commit -m "feat!: change CLI interface to use subcommands
+
+BREAKING CHANGE: The CLI now requires subcommands instead of flags"
+
+# With scope
+git commit -m "feat(cli): add --verbose flag for detailed output"
+
+# With body
+git commit -m "feat: add GitHub Actions for CI/CD
+
+- Add CI workflow for testing
+- Add release workflow for automatic publishing
+- Configure Ruby 3.2+ for CI environment"
+```
+
+### Commit Message Guidelines
+
+- **Language**: Always use English for commit messages
+- **Imperative Mood**: Use "add" not "added", "fix" not "fixed"
+- **Descriptive**: Be clear about what the change does
+- **Concise**: Keep the first line under 50 characters
+- **Consistent**: Follow the same format across all commits
+
+### Benefits
+
+- **Automatic changelog generation**
+- **Semantic versioning automation**
+- **Clear communication about changes**
+- **Better code review process**
+- **Integration with release tools**
 
 ## Versioning
 

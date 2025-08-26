@@ -100,6 +100,57 @@ gem push vergissberlin-1.0.0.gem
 
 **Note**: You need a RubyGems account and API key for manual publishing.
 
+## Getting RubyGems API Key
+
+### For GitHub Actions (Automatic Releases)
+
+To enable automatic releases to RubyGems via GitHub Actions, you need to set up a RubyGems API key as a GitHub secret:
+
+1. **Create RubyGems Account** (if you don't have one):
+   - Go to [RubyGems.org](https://rubygems.org)
+   - Click "Sign up" and create an account
+   - Verify your email address
+
+2. **Generate API Key**:
+   - Log in to [RubyGems.org](https://rubygems.org)
+   - Go to your profile (click your username)
+   - Click "Edit Profile"
+   - Scroll down to "API Access" section
+   - Click "Create API Key"
+   - Give it a name (e.g., "GitHub Actions")
+   - Copy the generated API key (it starts with `rubygems_`)
+
+3. **Add to GitHub Secrets**:
+   - Go to your GitHub repository
+   - Click "Settings" tab
+   - Click "Secrets and variables" → "Actions"
+   - Click "New repository secret"
+   - Name: `RUBYGEMS_API_KEY`
+   - Value: Paste your RubyGems API key
+   - Click "Add secret"
+
+### For Manual Publishing
+
+If you want to publish gems manually from your local machine:
+
+1. **Install RubyGems credentials**:
+   ```bash
+   gem push --key your_api_key_name
+   ```
+
+2. **Or configure credentials permanently**:
+   ```bash
+   gem push
+   # Enter your RubyGems username and password when prompted
+   ```
+
+### Security Notes
+
+- **Never commit API keys** to your repository
+- **Use GitHub Secrets** for CI/CD pipelines
+- **Rotate API keys** regularly for security
+- **Limit API key permissions** to only what's needed
+
 ## Contributing Guidelines
 
 ### Code Style

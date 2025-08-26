@@ -20,11 +20,11 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Mindestanforderungen
-  spec.required_ruby_version = ">= 3.2"
+  spec.required_ruby_version = ">= 2.7"
 
   # Entwicklungs-Abhängigkeiten (modernisiert, ungebundene Major-Mindestversionen mit pessimistischem Operator)
-  spec.add_development_dependency "bundler", ">= 2.3", "< 3.0"
+  spec.add_development_dependency "bundler", ">= 2.1", "< 3.0"
   spec.add_development_dependency "rake", ">= 13.0", "< 14.0"
   spec.add_development_dependency "minitest", ">= 5.18", "< 6.0"
-  spec.add_development_dependency "coveralls", ">= 0.8", "< 1.0"
+  # spec.add_development_dependency "coveralls", ">= 0.8", "< 1.0"  # Deaktiviert für lokale Entwicklung
 end

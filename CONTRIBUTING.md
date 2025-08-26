@@ -1,131 +1,131 @@
 # Contributing to VergissBerlin CLI
 
-Vielen Dank für dein Interesse am VergissBerlin CLI Projekt! Hier findest du Informationen, wie du zum Projekt beitragen und lokale Releases erstellen kannst.
+Thank you for your interest in the VergissBerlin CLI project! Here you'll find information on how to contribute to the project and create local releases.
 
-## Entwicklungsumgebung einrichten
+## Setting up Development Environment
 
-### Voraussetzungen
-- Ruby (Version 3.2 oder höher)
+### Prerequisites
+- Ruby (version 3.2 or higher)
 - Bundler
 - Git
 
 ### Installation
 ```bash
-# Repository klonen
+# Clone repository
 git clone https://github.com/vergissberlin/vergissberlin-cli.git
 cd vergissberlin-cli
 
-# Dependencies installieren
+# Install dependencies
 bundle install
 ```
 
-## Tests ausführen
+## Running Tests
 
 ```bash
-# Alle Tests ausführen
+# Run all tests
 bundle exec rake test
 
-# Tests mit Coverage ausführen
+# Run tests with coverage
 bundle exec rake coveralls:push
 ```
 
-## Lokales Release erstellen
+## Creating Local Releases
 
-### 1. Version aktualisieren
+### 1. Update Version
 
-Bearbeite die Datei `lib/vergissberlin/version.rb` und aktualisiere die Versionsnummer:
+Edit the file `lib/vergissberlin/version.rb` and update the version number:
 
 ```ruby
 module Vergissberlin
-  VERSION = "1.0.0"  # Neue Versionsnummer hier eintragen
+  VERSION = "1.0.0"  # Enter new version number here
 end
 ```
 
-### 2. Änderungen committen
+### 2. Commit Changes
 
 ```bash
-# Änderungen stagen und committen
+# Stage and commit changes
 git add .
 git commit -m "Bump version to 1.0.0"
 ```
 
-### 3. Tag erstellen
+### 3. Create Tag
 
 ```bash
-# Git Tag erstellen
+# Create Git tag
 git tag v1.0.0
 
-# Tag pushen
+# Push tag
 git push origin v1.0.0
 ```
 
-### 4. Gem lokal bauen und testen
+### 4. Build and Test Gem Locally
 
 ```bash
-# Gem bauen
+# Build gem
 gem build vergissberlin.gemspec
 
-# Gem lokal installieren und testen
+# Install gem locally and test
 gem install vergissberlin-1.0.0.gem
 
-# Testen ob das CLI funktioniert
+# Test if CLI works
 vergissberlin --help
 ```
 
-### 5. Release auslösen
+### 5. Trigger Release
 
-**Option A: Automatisches Release (empfohlen)**
-Nach dem Pushen des Tags wird die GitHub Action automatisch ausgelöst und das Gem zu RubyGems veröffentlicht.
+**Option A: Automatic Release (recommended)**
+After pushing the tag, the GitHub Action will automatically trigger and publish the gem to RubyGems.
 
-**Option B: GitHub Release erstellen**
-1. Gehe zu [GitHub Releases](https://github.com/vergissberlin/vergissberlin-cli/releases)
-2. Klicke auf "Create a new release"
-3. Wähle den erstellten Tag (z.B. `v1.0.0`)
-4. Füge Release Notes hinzu
-5. Klicke auf "Publish release"
+**Option B: Create GitHub Release**
+1. Go to [GitHub Releases](https://github.com/vergissberlin/vergissberlin-cli/releases)
+2. Click "Create a new release"
+3. Select the created tag (e.g., `v1.0.0`)
+4. Add release notes
+5. Click "Publish release"
 
-Die GitHub Action wird automatisch das Gem zu RubyGems veröffentlichen.
+The GitHub Action will automatically publish the gem to RubyGems.
 
-## Release zu RubyGems veröffentlichen (manuell)
+## Publishing Release to RubyGems (Manual)
 
-Falls du das Gem manuell veröffentlichen möchtest:
+If you want to publish the gem manually:
 
 ```bash
-# Gem bauen
+# Build gem
 gem build vergissberlin.gemspec
 
-# Zu RubyGems veröffentlichen
+# Publish to RubyGems
 gem push vergissberlin-1.0.0.gem
 ```
 
-**Hinweis**: Du benötigst einen RubyGems Account und API Key für die manuelle Veröffentlichung.
+**Note**: You need a RubyGems account and API key for manual publishing.
 
-## Beitragsrichtlinien
+## Contributing Guidelines
 
 ### Code Style
-- Verwende 2 Spaces für Einrückung
-- Schreibe aussagekräftige Commit Messages
-- Füge Tests für neue Features hinzu
+- Use 2 spaces for indentation
+- Write meaningful commit messages
+- Add tests for new features
 
-### Pull Request Prozess
-1. Fork das Repository
-2. Erstelle einen Feature Branch (`git checkout -b feature/amazing-feature`)
-3. Committe deine Änderungen (`git commit -m 'Add amazing feature'`)
-4. Pushe zum Branch (`git push origin feature/amazing-feature`)
-5. Erstelle einen Pull Request
+### Pull Request Process
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Create a Pull Request
 
 ### Issue Reporting
-- Verwende die Issue Templates
-- Beschreibe das Problem klar und vollständig
-- Füge Schritte zur Reproduktion hinzu
+- Use the issue templates
+- Describe the problem clearly and completely
+- Add steps to reproduce
 
-## Versionierung
+## Versioning
 
-Wir folgen [Semantic Versioning](https://semver.org/):
-- **MAJOR** Version für inkompatible API-Änderungen
-- **MINOR** Version für neue Features (rückwärtskompatibel)
-- **PATCH** Version für Bugfixes (rückwärtskompatibel)
+We follow [Semantic Versioning](https://semver.org/):
+- **MAJOR** version for incompatible API changes
+- **MINOR** version for new features (backward compatible)
+- **PATCH** version for bug fixes (backward compatible)
 
-## Lizenz
+## License
 
-Durch das Beitragen zu diesem Projekt stimmst du zu, dass deine Beiträge unter der MIT-Lizenz lizenziert werden.
+By contributing to this project, you agree that your contributions will be licensed under the MIT License.

@@ -1,0 +1,102 @@
+# VergissBerlin CLI - Cursor Rules
+
+## Project Overview
+This is a Ruby CLI gem project called "vergissberlin" that provides a useless tool without any features (as described in the gemspec). The project follows Ruby gem conventions and includes GitHub Actions for CI/CD.
+
+## Code Style & Conventions
+
+### Ruby Style
+- Use 2 spaces for indentation
+- Follow Ruby naming conventions (snake_case for methods/variables, CamelCase for classes)
+- Use meaningful variable and method names
+- Add comments for complex logic
+- Keep methods small and focused
+
+### File Structure
+- Main gem code in `lib/vergissberlin/`
+- Tests in `test/` directory
+- CLI executable in `bin/vergissberlin`
+- Version in `lib/vergissberlin/version.rb`
+
+### Documentation
+- All documentation must be in English
+- Keep README.md and CONTRIBUTING.md up to date
+- Use clear, concise language
+- Include code examples where helpful
+
+## Development Workflow
+
+### Local Development
+- Ruby 2.7+ required for local development
+- Use `bundle install` to install dependencies
+- Run tests with `bundle exec rake test`
+- Test CLI with `bundle exec vergissberlin --help`
+
+### Testing
+- Write tests for all new features
+- Use Minitest framework
+- Tests should be in `test/cases/` directory
+- Run full test suite before committing
+
+### Version Management
+- Update version in `lib/vergissberlin/version.rb`
+- Follow semantic versioning (MAJOR.MINOR.PATCH)
+- Create git tags for releases: `git tag v1.0.0`
+
+## CI/CD Pipeline
+
+### GitHub Actions
+- CI workflow: `.github/workflows/ci.yml` (tests on push/PR)
+- Release workflow: `.github/workflows/release.yml` (publishes on tags)
+- Use Ruby 3.2+ in CI environment
+- Separate Gemfile.production for CI dependencies
+
+### Release Process
+- Tag triggers automatic release to RubyGems
+- Manual GitHub releases also supported
+- Requires RUBYGEMS_API_KEY secret
+
+## Dependencies
+
+### Development Dependencies
+- bundler (>= 2.1, < 3.0)
+- rake (>= 13.0, < 14.0)
+- minitest (>= 5.18, < 6.0)
+- coveralls (>= 0.8, < 1.0) - for CI only
+
+### Local Development
+- coveralls disabled locally to avoid permission issues
+- Use Gemfile.production for CI environment
+
+## Code Quality
+
+### Best Practices
+- Keep the gem lightweight and focused
+- Maintain backward compatibility when possible
+- Follow Ruby gem conventions
+- Use meaningful commit messages
+- Document public APIs
+
+### Error Handling
+- Provide clear error messages
+- Handle edge cases gracefully
+- Log errors appropriately
+
+## Project-Specific Rules
+
+### CLI Design
+- Keep CLI interface simple and intuitive
+- Provide helpful usage information
+- Include version and help options
+- Follow Unix CLI conventions
+
+### Gem Structure
+- Maintain the "useless tool" theme in descriptions
+- Keep the gem name consistent (vergissberlin)
+- Ensure proper gem packaging and distribution
+
+## Communication
+- Always respond in German when user speaks German
+- Provide clear explanations for technical decisions
+- Suggest improvements when appropriate
+- Help maintain code quality and consistency

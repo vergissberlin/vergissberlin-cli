@@ -16,6 +16,8 @@ Some hot useles stuff! Trust me, there is no functionality!
 
 ## Installation
 
+### For End Users
+
 Add this line to your application's Gemfile:
 
     gem 'vergissberlin'
@@ -27,6 +29,23 @@ And then execute:
 Or install it yourself as:
 
     $ gem install vergissberlin
+
+### For Developers
+
+```bash
+# Clone repository
+git clone https://github.com/vergissberlin/vergissberlin-cli.git
+cd vergissberlin-cli
+
+# Install dependencies (Ruby 2.7+ required)
+bundle install
+
+# Run tests
+bundle exec rake test
+
+# Test CLI
+bundle exec vergissberlin --help
+```
 
 ## Dependency
 ![image](gem_graph.png)

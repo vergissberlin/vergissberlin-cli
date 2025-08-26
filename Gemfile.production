@@ -7,8 +7,6 @@ group :test do
   gem 'rake'
 end
 
-# Lokale Entwicklung ohne problematische Dependencies
 gem "minitest"
 gem "redgreen"
-# gem "coveralls", require: false  # Deaktiviert für lokale Entwicklung
-
+gem "coveralls", require: false

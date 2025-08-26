@@ -13,5 +13,5 @@ unless defined?(TestExtensions)
   require 'minitest/autorun'
 end
 
-require 'coveralls'
-Coveralls.wear!
+# require 'coveralls'  # Temporär deaktiviert für lokale Entwicklung
+# Coveralls.wear!

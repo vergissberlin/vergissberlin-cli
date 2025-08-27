@@ -65,6 +65,7 @@ This is a Ruby CLI gem project called "vergissberlin" that provides a useless to
 - coveralls (>= 0.8, < 1.0) - for CI only
 
 ### Local Development
+
 - coveralls disabled locally to avoid permission issues
 - Use Gemfile.production for CI environment
 

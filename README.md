@@ -52,10 +52,14 @@ Ruby 3.2+ is required.
 ## Usage
 
 ```bash
-vergissberlin          # print the useless banner
+vergissberlin          # print the rainbow "THATS COOL" banner
 vergissberlin --version  # print installed version (also -v)
 vergissberlin --help
 ```
+
+The default banner uses a diagonal rainbow (ANSI truecolor) when stdout is a
+TTY. Set `NO_COLOR=1` to disable colors, or `FORCE_COLOR=1` to force them
+(overrides `NO_COLOR`). Use `FORCE_COLOR=0` to disable colors explicitly.
 
 ## Development
 

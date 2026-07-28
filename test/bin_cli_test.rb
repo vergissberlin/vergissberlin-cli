@@ -31,8 +31,12 @@ class BinCliTest < Minitest::Test
   end
 
   def test_cli_default_banner
-    stdout, stderr, status = Open3.capture3(RbConfig.ruby, BIN_PATH)
+    stdout, stderr, status = Open3.capture3(
+      { 'NO_COLOR' => '1', 'FORCE_COLOR' => '0' },
+      RbConfig.ruby, BIN_PATH
+    )
     assert status.success?, "Process failed: #{stderr}"
     assert_includes stdout, '_______'
+    refute_includes stdout, "\e["
   end
 end

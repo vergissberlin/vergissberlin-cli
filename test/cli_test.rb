@@ -34,6 +34,48 @@ class CliTest < Minitest::Test
 
     assert_equal 0, status
     assert_includes out.string, '_______'
+    assert_includes out.string, '|_____/'
+    refute_includes out.string, "\e["
+  end
+
+  def test_banner_lines_are_aligned
+    widths = Vergissberlin::CLI::BANNER_LINES.map(&:length)
+
+    assert_equal 1, widths.uniq.size, 'banner lines must share one width'
+    assert(widths.first >= 60)
+  end
+
+  def test_rainbow_banner_when_forced
+    out = StringIO.new
+    with_env('FORCE_COLOR' => '1', 'NO_COLOR' => nil) do
+      status = Vergissberlin::CLI.run([], out: out)
+
+      assert_equal 0, status
+      assert_includes out.string, "\e[38;2;"
+      assert_includes out.string, "\e[0m"
+      plain = out.string.gsub(/\e\[[0-9;]*m/, '')
+      assert_includes plain, '_______'
+    end
+  end
+
+  def test_no_color_disables_rainbow
+    out = StringIO.new
+    with_env('FORCE_COLOR' => nil, 'NO_COLOR' => '1') do
+      status = Vergissberlin::CLI.run([], out: out)
+
+      assert_equal 0, status
+      refute_includes out.string, "\e["
+    end
+  end
+
+  def test_force_color_zero_disables_rainbow
+    out = StringIO.new
+    with_env('FORCE_COLOR' => '0', 'NO_COLOR' => nil) do
+      status = Vergissberlin::CLI.run([], out: out)
+
+      assert_equal 0, status
+      refute_includes out.string, "\e["
+    end
   end
 
   def test_invalid_option
@@ -44,5 +86,27 @@ class CliTest < Minitest::Test
     assert_equal 1, status
     assert_includes err.string, 'invalid option'
     assert_includes err.string, 'Usage:'
+  end
+
+  private
+
+  def with_env(vars)
+    previous = vars.keys.to_h { |key| [key, ENV[key]] }
+    vars.each do |key, value|
+      if value.nil?
+        ENV.delete(key)
+      else
+        ENV[key] = value
+      end
+    end
+    yield
+  ensure
+    previous.each do |key, value|
+      if value.nil?
+        ENV.delete(key)
+      else
+        ENV[key] = value
+      end
+    end
   end
 end

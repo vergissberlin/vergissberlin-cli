@@ -42,9 +42,25 @@ Version bumps, `CHANGELOG.md`, and GitHub releases are handled by [Release Pleas
 1. Land changes on `main` using Conventional Commits
 2. Release Please opens or updates a release PR
 3. Merge the release PR to cut a tagged GitHub release
-4. `.github/workflows/release.yml` builds and pushes the gem to RubyGems
+4. `.github/workflows/release.yml` builds and pushes the gem to
+   **RubyGems.org** and **GitHub Packages**
 
 You usually do **not** edit `lib/vergissberlin/version.rb` by hand.
+
+### Changelog categories
+
+`release-please-config.json` lists every common Conventional Commit type as a
+visible changelog section (`feat`, `fix`, `perf`, `deps`, `revert`, `docs`,
+`style`, `chore`, `refactor`, `test`, `build`, `ci`). Non-hidden sections are
+included in release notes and can open a release PR.
+
+Version bumps still follow SemVer via Release Please:
+
+| Commit type | Effect (pre-1.0 with current config) |
+| --- | --- |
+| `feat` | patch (`bump-patch-for-minor-pre-major`) |
+| `fix` / other visible types | patch |
+| breaking (`!` / `BREAKING CHANGE`) | minor (`bump-minor-pre-major`) |
 
 ### Conventional Commits
 
@@ -58,7 +74,8 @@ All commit messages must be written in English.
 [optional footer(s)]
 ```
 
-Common types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `chore`.
+Common types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`,
+`chore`, `build`, `ci`, `deps`.
 
 Examples:
 
@@ -78,7 +95,8 @@ BREAKING CHANGE: The CLI now requires subcommands instead of flags"
 
 ### RubyGems API Key (CI)
 
-For automatic publishing, add a repository secret named `RUBYGEMS_API_KEY`:
+For automatic publishing to RubyGems.org, add a repository secret named
+`RUBYGEMS_API_KEY`:
 
 1. Create an API key on [RubyGems.org](https://rubygems.org)
 2. In the GitHub repo: Settings → Secrets and variables → Actions
@@ -86,11 +104,30 @@ For automatic publishing, add a repository secret named `RUBYGEMS_API_KEY`:
 
 Never commit API keys. Rotate them regularly and limit permissions.
 
+### GitHub Packages (CI)
+
+Publishing to
+[GitHub Packages](https://github.com/vergissberlin/vergissberlin-cli/packages)
+uses the workflow `GITHUB_TOKEN` (`packages: write`). No extra secret is
+required. The gemspec sets `metadata["github_repo"]` so the package links to
+this repository.
+
+First publish is private by default; set package visibility to public in the
+GitHub UI if needed.
+
 ### Manual publish (fallback)
 
 ```bash
 gem build vergissberlin.gemspec
+
+# RubyGems.org
 gem push vergissberlin-*.gem
+
+# GitHub Packages (classic PAT with write:packages)
+# ~/.gem/credentials should contain: :github: Bearer TOKEN
+gem push --key github \
+  --host https://rubygems.pkg.github.com/vergissberlin \
+  vergissberlin-*.gem
 ```
 
 ## Code Style

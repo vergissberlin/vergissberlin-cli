@@ -19,6 +19,9 @@ Gem::Specification.new do |spec|
   spec.metadata['source_code_uri'] = spec.homepage
   spec.metadata['changelog_uri'] = "#{spec.homepage}/blob/main/CHANGELOG.md"
   spec.metadata['rubygems_mfa_required'] = 'true'
+  # Link GitHub Packages gem to this repository (name may differ from gem).
+  spec.metadata['github_repo'] =
+    'ssh://github.com/vergissberlin/vergissberlin-cli'
 
   spec.files = Dir.chdir(__dir__) do
     `git ls-files -z`.split("\x0").reject do |f|

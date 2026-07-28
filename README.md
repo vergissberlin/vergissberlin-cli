@@ -11,22 +11,30 @@ Some hot useless stuff! Trust me, there is no functionality.
 
 ### For End Users
 
-Add this line to your application's Gemfile:
+**RubyGems.org** (default):
 
 ```ruby
 gem "vergissberlin"
 ```
 
-And then execute:
-
 ```bash
 bundle install
+# or
+gem install vergissberlin
 ```
 
-Or install it yourself as:
+**GitHub Packages** ([packages](https://github.com/vergissberlin/vergissberlin-cli/packages)):
+
+```ruby
+source "https://rubygems.pkg.github.com/vergissberlin" do
+  gem "vergissberlin"
+end
+```
+
+Authenticate Bundler (classic PAT with `read:packages`):
 
 ```bash
-gem install vergissberlin
+bundle config https://rubygems.pkg.github.com/vergissberlin USERNAME:TOKEN
 ```
 
 ### For Developers
@@ -65,7 +73,9 @@ Releases are automated with [Release Please](https://github.com/googleapis/relea
 1. Merge conventional commits into `main`
 2. Release Please opens (or updates) a release PR with changelog + version bump
 3. Merging that PR creates a GitHub release/tag
-4. The release workflow publishes the gem to RubyGems
+4. The release workflow publishes the gem to **RubyGems.org** and **GitHub Packages**
+
+All Conventional Commit types (`feat`, `fix`, `docs`, `refactor`, `chore`, …) appear in the changelog and can open a release PR. Version bumps still follow SemVer (`feat` / `fix` / `perf` / breaking).
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 

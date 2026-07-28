@@ -55,8 +55,8 @@ This is a Ruby CLI gem project called "vergissberlin" that provides a useless to
 ### Release Process
 - Release Please opens a release PR from conventional commits
 - Merging the release PR creates a GitHub release/tag
-- Publish job pushes the gem to RubyGems
-- Requires `RUBYGEMS_API_KEY` secret
+- Publish job pushes the gem to RubyGems.org and GitHub Packages
+- Requires `RUBYGEMS_API_KEY` secret (RubyGems); GitHub Packages uses `GITHUB_TOKEN`
 
 ## Dependencies
 

@@ -1,14 +1,5 @@
-source 'https://rubygems.org'
+# frozen_string_literal: true
 
-# Specify your gem's dependencies in vergissberlin.gemspec
+source "https://rubygems.org"
+
 gemspec
-
-group :test do
-  gem 'rake'
-end
-
-# Lokale Entwicklung ohne problematische Dependencies
-gem "minitest"
-gem "redgreen"
-# gem "coveralls", require: false  # Deaktiviert für lokale Entwicklung
-

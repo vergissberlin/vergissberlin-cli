@@ -1,41 +1,54 @@
-name: Release
+name: Release Please
 
 on:
   push:
-    tags: [ 'v*' ]
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write
 
 jobs:
-  release:
+  release-please:
     runs-on: ubuntu-latest
-    
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+
     steps:
-    - uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-    
-    - name: Debug info
-      run: |
-        echo "GitHub ref: ${{ github.ref }}"
-        echo "GitHub ref type: ${{ github.ref_type }}"
-        echo "Tag name: ${{ github.ref_name }}"
-    
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: '3.3'
-        bundler-cache: true
-    
-    - name: Install dependencies
-      run: |
-        cp Gemfile.production Gemfile
-        # Temporarily enable coveralls for CI
-        sed -i 's/# spec.add_development_dependency "coveralls"/spec.add_development_dependency "coveralls"/' vergissberlin.gemspec
-        bundle install
-    
-    - name: Build gem
-      run: gem build vergissberlin.gemspec
-    
-    - name: Publish to RubyGems
-      run: gem push vergissberlin-*.gem
-      env:
-        RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
+      - uses: googleapis/release-please-action@v4
+        id: release
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+  publish:
+    needs: release-please
+    if: needs.release-please.outputs.release_created == 'true'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.release-please.outputs.tag_name }}
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.4"
+          bundler-cache: true
+
+      - name: Configure RubyGems credentials
+        run: |
+          mkdir -p ~/.gem
+          cat <<EOF > ~/.gem/credentials
+          ---
+          :rubygems_api_key: ${{ secrets.RUBYGEMS_API_KEY }}
+          EOF
+          chmod 0600 ~/.gem/credentials
+
+      - name: Build and publish gem
+        run: |
+          gem build vergissberlin.gemspec
+          gem push vergissberlin-*.gem

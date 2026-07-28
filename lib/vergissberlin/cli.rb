@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require "optparse"
-require "vergissberlin/version"
+require 'optparse'
+require 'vergissberlin/version'
 
 module Vergissberlin
   # Command-line interface for the vergissberlin gem.
@@ -56,13 +56,13 @@ module Vergissberlin
     def parse_options
       options = {}
       @parser = OptionParser.new do |opts|
-        opts.banner = "Usage: vergissberlin [options]"
+        opts.banner = 'Usage: vergissberlin [options]'
 
-        opts.on("-v", "--version", "Show version") do
+        opts.on('-v', '--version', 'Show version') do
           options[:version] = true
         end
 
-        opts.on("-h", "--help", "Show help") do
+        opts.on('-h', '--help', 'Show help') do
           options[:help] = true
         end
       end

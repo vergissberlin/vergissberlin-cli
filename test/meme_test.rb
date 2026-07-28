@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "test_helper"
+require 'test_helper'
 
 class MemeTest < Minitest::Test
   def setup
@@ -8,6 +8,6 @@ class MemeTest < Minitest::Test
   end
 
   def test_that_should_be_cool
-    assert_equal "YEAR!", @meme.that_should_be_cool
+    assert_equal 'YEAR!', @meme.that_should_be_cool
   end
 end

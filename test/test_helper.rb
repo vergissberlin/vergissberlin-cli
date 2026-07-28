@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require "simplecov"
-require "simplecov-lcov"
+require 'simplecov'
+require 'simplecov-lcov'
 
 SimpleCov::Formatter::LcovFormatter.config do |config|
   config.report_with_single_file = true
-  config.single_report_path = "coverage/lcov.info"
+  config.single_report_path = 'coverage/lcov.info'
 end
 
 SimpleCov.formatters = SimpleCov::Formatter::MultiFormatter.new(
@@ -16,11 +16,11 @@ SimpleCov.formatters = SimpleCov::Formatter::MultiFormatter.new(
 )
 
 SimpleCov.start do
-  add_filter "/test/"
+  add_filter '/test/'
   enable_coverage :branch
-  track_files "lib/**/*.rb"
+  track_files 'lib/**/*.rb'
 end
 
-require "minitest/autorun"
-require "minitest/pride"
-require "vergissberlin"
+require 'minitest/autorun'
+require 'minitest/pride'
+require 'vergissberlin'

@@ -6,18 +6,19 @@ require 'vergissberlin/version'
 module Vergissberlin
   # Command-line interface for the vergissberlin gem.
   class CLI
-    BANNER = [
-      '',
-      '',
-      '  _______ _    _       _______ _____    _____ ____   ____  _',
-      ' |__   __| |  | |   /\\|__   __/ ____|  / ____/ __ \\ / __ \\| |',
-      '    | |  | |__| |  /  \\  | | | (___   | |   | |  | | |  | | |',
-      '    | |  |  __  | / /\\ \\ | |  \\___ \\  | |   | |  | | |  | | |',
-      '    | |  | |  | |/ ____ \\| |  ____) | | |___| |__| | |__| | |____',
-      '    |_|  |_|  |_/_/    \\_\\_| |_____/   \\_____\\____/ \\____/|______|',
-      '',
-      ''
-    ].join("\n").freeze
+    # Properly aligned figlet "big" banner for "THATS COOL".
+    BANNER_LINES = [
+      ' _______ _    _       _______ _____    _____ ____   ____  _      ',
+      '|__   __| |  | |   /\\|__   __/ ____|  / ____/ __ \\ / __ \\| |     ',
+      '   | |  | |__| |  /  \\  | | | (___   | |   | |  | | |  | | |     ',
+      '   | |  |  __  | / /\\ \\ | |  \\___ \\  | |   | |  | | |  | | |     ',
+      '   | |  | |  | |/ ____ \\| |  ____) | | |___| |__| | |__| | |____ ',
+      '   |_|  |_|  |_/_/    \\_\\_| |_____/   \\_____\\____/ \\____/|______|'
+    ].freeze
+
+    BANNER = (['', ''] + BANNER_LINES + ['', '']).join("\n").freeze
+
+    RESET = "\e[0m"
 
     def self.run(argv = ARGV, out: $stdout, err: $stderr)
       new(argv, out: out, err: err).run
@@ -43,7 +44,7 @@ module Vergissberlin
       return show_help if options[:help]
       return show_version if options[:version]
 
-      @out.print BANNER
+      @out.print render_banner
       0
     end
 
@@ -77,6 +78,61 @@ module Vergissberlin
         end
         opts.on('-h', '--help', 'Show help') { options[:help] = true }
       end
+    end
+
+    def render_banner
+      return BANNER unless colorize?
+
+      colored = BANNER_LINES.map.with_index do |line, row|
+        rainbow_line(line, row)
+      end
+      "\n\n#{colored.join("\n")}\n\n"
+    end
+
+    def colorize?
+      forced = force_color_setting
+      return forced unless forced.nil?
+      return false if ENV['NO_COLOR']
+      return true if env_flag_on?('CLICOLOR_FORCE')
+
+      tty_out?
+    end
+
+    # nil = unset, true/false = explicit force on/off
+    def force_color_setting
+      force = ENV['FORCE_COLOR']
+      return nil if force.nil? || force.empty?
+
+      force != '0'
+    end
+
+    def env_flag_on?(name)
+      value = ENV[name]
+      !(value.nil? || value.empty? || value == '0')
+    end
+
+    def tty_out?
+      @out.respond_to?(:tty?) && @out.tty?
+    end
+
+    # Lolcat-style diagonal rainbow via ANSI truecolor.
+    def rainbow_line(line, row)
+      line.chars.map.with_index do |char, col|
+        r, g, b = rainbow_rgb(row + col)
+        "\e[38;2;#{r};#{g};#{b}m#{char}"
+      end.join + RESET
+    end
+
+    def rainbow_rgb(index)
+      [
+        wave(index, 0),
+        wave(index, 2 * Math::PI / 3),
+        wave(index, 4 * Math::PI / 3)
+      ]
+    end
+
+    def wave(index, phase)
+      (Math.sin(0.15 * index + phase) * 127 + 128).round
     end
   end
 end

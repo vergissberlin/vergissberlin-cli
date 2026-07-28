@@ -53,7 +53,7 @@ Ruby 3.2+ is required.
 
 ```bash
 vergissberlin          # print the useless banner
-vergissberlin --version
+vergissberlin --version  # print installed version (also -v)
 vergissberlin --help
 ```
 

@@ -97,9 +97,12 @@ Releases are automated:
 1. Land conventional commits on `main`
 2. Release Please opens/updates a release PR (changelog + version bump)
 3. Merging that PR creates the GitHub release/tag
-4. `release.yml` publishes the gem to RubyGems using `RUBYGEMS_API_KEY`
+4. `release.yml` publishes the gem to **RubyGems.org** (`RUBYGEMS_API_KEY`)
+   and **GitHub Packages** (`GITHUB_TOKEN` + `packages: write`)
 
-Do not create release tags by hand unless explicitly asked.
+All Conventional Commit types are visible changelog sections in
+`release-please-config.json` (so non-`feat`/`fix` commits can still open a
+release PR). Do not create release tags by hand unless explicitly asked.
 
 ## Communication
 

@@ -90,15 +90,28 @@ module Vergissberlin
     end
 
     def colorize?
-      force = ENV['FORCE_COLOR']
-      return false if force == '0'
-      return true if force && !force.empty?
-
+      forced = force_color_setting
+      return forced unless forced.nil?
       return false if ENV['NO_COLOR']
+      return true if env_flag_on?('CLICOLOR_FORCE')
 
-      clicolor = ENV['CLICOLOR_FORCE']
-      return true if clicolor && !clicolor.empty? && clicolor != '0'
+      tty_out?
+    end
 
+    # nil = unset, true/false = explicit force on/off
+    def force_color_setting
+      force = ENV['FORCE_COLOR']
+      return nil if force.nil? || force.empty?
+
+      force != '0'
+    end
+
+    def env_flag_on?(name)
+      value = ENV[name]
+      !(value.nil? || value.empty? || value == '0')
+    end
+
+    def tty_out?
       @out.respond_to?(:tty?) && @out.tty?
     end
 
@@ -111,12 +124,15 @@ module Vergissberlin
     end
 
     def rainbow_rgb(index)
-      freq = 0.15
       [
-        (Math.sin(freq * index) * 127 + 128).round,
-        (Math.sin(freq * index + 2 * Math::PI / 3) * 127 + 128).round,
-        (Math.sin(freq * index + 4 * Math::PI / 3) * 127 + 128).round
+        wave(index, 0),
+        wave(index, 2 * Math::PI / 3),
+        wave(index, 4 * Math::PI / 3)
       ]
+    end
+
+    def wave(index, phase)
+      (Math.sin(0.15 * index + phase) * 127 + 128).round
     end
   end
 end

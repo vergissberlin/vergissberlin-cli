@@ -78,6 +78,20 @@ class CliTest < Minitest::Test
     end
   end
 
+  def test_clicolor_force_enables_rainbow
+    out = StringIO.new
+    with_env(
+      'FORCE_COLOR' => nil,
+      'NO_COLOR' => nil,
+      'CLICOLOR_FORCE' => '1'
+    ) do
+      status = Vergissberlin::CLI.run([], out: out)
+
+      assert_equal 0, status
+      assert_includes out.string, "\e[38;2;"
+    end
+  end
+
   def test_invalid_option
     out = StringIO.new
     err = StringIO.new
@@ -92,21 +106,15 @@ class CliTest < Minitest::Test
 
   def with_env(vars)
     previous = vars.keys.to_h { |key| [key, ENV[key]] }
-    vars.each do |key, value|
-      if value.nil?
-        ENV.delete(key)
-      else
-        ENV[key] = value
-      end
-    end
+    apply_env(vars)
     yield
   ensure
-    previous.each do |key, value|
-      if value.nil?
-        ENV.delete(key)
-      else
-        ENV[key] = value
-      end
+    apply_env(previous)
+  end
+
+  def apply_env(vars)
+    vars.each do |key, value|
+      value.nil? ? ENV.delete(key) : ENV[key] = value
     end
   end
 end

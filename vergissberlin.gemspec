@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
-lib = File.expand_path('lib', __dir__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'vergissberlin/version'
-
 Gem::Specification.new do |spec|
   spec.name = 'vergissberlin'
-  spec.version = Vergissberlin::VERSION
+  # Parse without requiring so SimpleCov can measure version.rb in tests.
+  spec.version = File.read(
+    File.expand_path('lib/vergissberlin/version.rb', __dir__)
+  )[/VERSION\s*=\s*['"]([^'"]+)['"]/, 1]
   spec.authors = ['André Lademann']
   spec.email = ['andre@programmerq.eu']
 

@@ -92,6 +92,26 @@ class CliTest < Minitest::Test
     end
   end
 
+  def test_non_tty_skips_rainbow_without_env
+    out = StringIO.new
+    without_color_env do
+      status = Vergissberlin::CLI.run([], out: out)
+
+      assert_equal 0, status
+      refute_includes out.string, "\e["
+    end
+  end
+
+  def test_tty_enables_rainbow_without_env
+    out = tty_buffer
+    without_color_env do
+      status = Vergissberlin::CLI.run([], out: out)
+
+      assert_equal 0, status
+      assert_includes out.string, "\e[38;2;"
+    end
+  end
+
   def test_invalid_option
     out = StringIO.new
     err = StringIO.new
@@ -103,6 +123,23 @@ class CliTest < Minitest::Test
   end
 
   private
+
+  def without_color_env(&block)
+    with_env(
+      'FORCE_COLOR' => nil,
+      'NO_COLOR' => nil,
+      'CLICOLOR_FORCE' => nil,
+      &block
+    )
+  end
+
+  def tty_buffer
+    out = StringIO.new
+    def out.tty?
+      true
+    end
+    out
+  end
 
   def with_env(vars)
     previous = vars.keys.to_h { |key| [key, ENV[key]] }

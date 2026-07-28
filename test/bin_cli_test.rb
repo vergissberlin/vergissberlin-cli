@@ -11,7 +11,15 @@ class BinCliTest < Minitest::Test
       RbConfig.ruby, BIN_PATH, '--version'
     )
     assert status.success?, "Process failed: #{stderr}"
-    assert_match(/\A\d+\.\d+\.\d+\n\z/, stdout)
+    assert_equal "#{Vergissberlin::VERSION}\n", stdout
+  end
+
+  def test_cli_short_version_flag
+    stdout, stderr, status = Open3.capture3(
+      RbConfig.ruby, BIN_PATH, '-v'
+    )
+    assert status.success?, "Process failed: #{stderr}"
+    assert_equal "#{Vergissberlin::VERSION}\n", stdout
   end
 
   def test_cli_help_flag

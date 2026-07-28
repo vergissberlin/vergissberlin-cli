@@ -72,7 +72,9 @@ module Vergissberlin
     def build_parser(options)
       OptionParser.new do |opts|
         opts.banner = 'Usage: vergissberlin [options]'
-        opts.on('-v', '--version', 'Show version') { options[:version] = true }
+        opts.on('-v', '--version', 'Show installed version') do
+          options[:version] = true
+        end
         opts.on('-h', '--help', 'Show help') { options[:help] = true }
       end
     end

@@ -1,4 +1,6 @@
-require_relative '../utils'
+# frozen_string_literal: true
+
+require 'test_helper'
 
 class VersionTest < Minitest::Test
   def test_version_constant_format

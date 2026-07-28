@@ -1,16 +1,13 @@
-#!/usr/bin/env rake
-require "bundler/gem_tasks"
-Bundler.setup(:default, :development)
+# frozen_string_literal: true
 
+require 'bundler/gem_tasks'
 require 'rake/testtask'
 
 Rake::TestTask.new(:test) do |test|
-  test.libs << 'lib' << 'test'
-  test.pattern = 'test/**/*_test.rb'
+  test.libs << 'test'
+  test.libs << 'lib'
+  test.test_files = FileList['test/**/*_test.rb']
   test.verbose = true
 end
 
-# require 'coveralls/rake/task'  # Temporär deaktiviert für lokale Entwicklung
-# Coveralls::RakeTask.new
-
-task :default => :test
+task default: :test

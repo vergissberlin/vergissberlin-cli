@@ -1,18 +1,11 @@
 # Vergissberlin
 
-[![Join the chat at https://gitter.im/vergissberlin/vergissberlin](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vergissberlin/vergissberlin?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+Some hot useless stuff! Trust me, there is no functionality.
 
-Some hot useles stuff! Trust me, there is no functionality!
-
-
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/47c04ed87749b6107bf7e6baa7f0224a)](https://www.codacy.com/app/andre_1725/vergissberlin?utm_source=github.com&utm_medium=referral&utm_content=vergissberlin/vergissberlin&utm_campaign=badger)
-[![Build Status](https://travis-ci.org/vergissberlin/vergissberlin.png?branch=master)](https://travis-ci.org/vergissberlin/vergissberlin)
-[![Gem Version](https://badge.fury.io/rb/vergissberlin.png)](http://badge.fury.io/rb/vergissberlin)
-[![Dependency Status](https://gemnasium.com/vergissberlin/vergissberlin.png)](https://gemnasium.com/vergissberlin/vergissberlin)
-[![Code Climate](https://codeclimate.com/github/vergissberlin/vergissberlin.png)](https://codeclimate.com/github/vergissberlin/vergissberlin)
-[![Coverage Status](https://coveralls.io/repos/vergissberlin/vergissberlin/badge.png?branch=master)](https://coveralls.io/r/vergissberlin/vergissberlin)
-[![Analytics](https://ga-beacon.appspot.com/UA-35739360-2/vergissberlin/vergissberlin)](https://github.com/vergissberlin/vergissberlin)
-[![Inline docs](http://inch-ci.org/github/vergissberlin/vergissberlin.svg?branch=master)](http://inch-ci.org/github/vergissberlin/vergissberlin)
+[![CI](https://github.com/vergissberlin/vergissberlin-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/vergissberlin/vergissberlin-cli/actions/workflows/ci.yml)
+[![Gem Version](https://badge.fury.io/rb/vergissberlin.svg)](https://badge.fury.io/rb/vergissberlin)
+[![Coverage Status](https://coveralls.io/repos/github/vergissberlin/vergissberlin-cli/badge.svg?branch=main)](https://coveralls.io/github/vergissberlin/vergissberlin-cli?branch=main)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE.txt)
 
 ## Installation
 
@@ -20,49 +13,66 @@ Some hot useles stuff! Trust me, there is no functionality!
 
 Add this line to your application's Gemfile:
 
-    gem 'vergissberlin'
+```ruby
+gem "vergissberlin"
+```
 
 And then execute:
 
-    $ bundle
+```bash
+bundle install
+```
 
 Or install it yourself as:
 
-    $ gem install vergissberlin
+```bash
+gem install vergissberlin
+```
 
 ### For Developers
 
 ```bash
-# Clone repository
 git clone https://github.com/vergissberlin/vergissberlin-cli.git
 cd vergissberlin-cli
-
-# Install dependencies (Ruby 2.7+ required)
 bundle install
-
-# Run tests
 bundle exec rake test
-
-# Test CLI
 bundle exec vergissberlin --help
 ```
 
-## Dependency
-![image](gem_graph.png)
-
+Ruby 3.2+ is required.
 
 ## Usage
 
-    $ vergissberlin
+```bash
+vergissberlin          # print the useless banner
+vergissberlin --version
+vergissberlin --help
+```
+
+## Development
+
+```bash
+bundle install
+bundle exec rake test
+```
+
+Coverage reports are written to `coverage/` (HTML + LCOV). CI uploads LCOV to Coveralls.
+
+## Release
+
+Releases are automated with [Release Please](https://github.com/googleapis/release-please).
+
+1. Merge conventional commits into `main`
+2. Release Please opens (or updates) a release PR with changelog + version bump
+3. Merging that PR creates a GitHub release/tag
+4. The release workflow publishes the gem to RubyGems
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
 ## Contributing
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+Bug reports and pull requests are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) and use [Conventional Commits](https://www.conventionalcommits.org/).
 
+## License
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/vergissberlin/vergissberlin/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
+The gem is available as open source under the terms of the [MIT License](LICENSE.txt).

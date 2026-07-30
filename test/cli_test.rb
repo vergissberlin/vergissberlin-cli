@@ -28,24 +28,46 @@ class CliTest < Minitest::Test
     assert_includes out.string, 'Usage:'
   end
 
-  def test_default_banner
+  def test_default_skyline
     out = StringIO.new
     status = Vergissberlin::CLI.run([], out: out)
 
     assert_equal 0, status
-    assert_includes out.string, '_______'
-    assert_includes out.string, '|_____/'
+    Vergissberlin::Skyline::LINES.each do |line|
+      assert_includes out.string, line
+    end
     refute_includes out.string, "\e["
   end
 
-  def test_banner_lines_are_aligned
-    widths = Vergissberlin::CLI::BANNER_LINES.map(&:length)
+  def test_default_output_includes_a_random_reason
+    out = StringIO.new
+    status = Vergissberlin::CLI.run([], out: out)
 
-    assert_equal 1, widths.uniq.size, 'banner lines must share one width'
-    assert(widths.first >= 60)
+    assert_equal 0, status
+    assert_includes out.string, Vergissberlin::Reasons::HEADLINE
+    assert(Vergissberlin::Reasons::ALL.any? { |r| out.string.include?(r) })
   end
 
-  def test_rainbow_banner_when_forced
+  def test_reason_is_reproducible_for_a_seed
+    first = StringIO.new
+    second = StringIO.new
+    Vergissberlin::CLI.run([], out: first, random: Random.new(23))
+    Vergissberlin::CLI.run([], out: second, random: Random.new(23))
+
+    assert_equal first.string, second.string
+  end
+
+  def test_reason_varies_between_seeds
+    reasons = [4, 8, 15, 16, 23, 42].map do |seed|
+      out = StringIO.new
+      Vergissberlin::CLI.run([], out: out, random: Random.new(seed))
+      out.string.lines.map(&:strip).reject(&:empty?).last
+    end
+
+    assert_operator reasons.uniq.size, :>, 1
+  end
+
+  def test_rainbow_skyline_when_forced
     out = StringIO.new
     with_env('FORCE_COLOR' => '1', 'NO_COLOR' => nil) do
       status = Vergissberlin::CLI.run([], out: out)
@@ -54,7 +76,7 @@ class CliTest < Minitest::Test
       assert_includes out.string, "\e[38;2;"
       assert_includes out.string, "\e[0m"
       plain = out.string.gsub(/\e\[[0-9;]*m/, '')
-      assert_includes plain, '_______'
+      assert_includes plain, Vergissberlin::Skyline::LINES.last
     end
   end
 

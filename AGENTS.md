@@ -17,6 +17,8 @@ Guidance for AI coding agents working on this repository.
 | --- | --- |
 | `lib/vergissberlin.rb` | Public entrypoint |
 | `lib/vergissberlin/cli.rb` | CLI logic (`Vergissberlin::CLI`) |
+| `lib/vergissberlin/skyline.rb` | ASCII art skyline with the Fernsehturm |
+| `lib/vergissberlin/reasons.rb` | German reasons to forget Berlin (random) |
 | `lib/vergissberlin/version.rb` | `VERSION` constant (Release Please owned) |
 | `bin/vergissberlin` | Thin executable wrapper only |
 | `test/` | Minitest suite (`*_test.rb`, `test_helper.rb`) |
@@ -60,7 +62,7 @@ Prefer `bundle exec` for all Ruby tooling.
 **Do**
 
 - Follow Conventional Commits in English (`feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`, …)
-- Preserve backward-compatible CLI flags (`--help`, `--version`, default banner)
+- Preserve backward-compatible CLI flags (`--help`, `--version`, default output)
 - Update README/CONTRIBUTING when workflows or public behavior change
 - Keep the gem lightweight
 

@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.1.6](https://github.com/vergissberlin/vergissberlin-cli/compare/v0.1.5...v0.1.6) (2026-07-30)
+
+
+### Features
+
+* **cli:** replace THATS COOL banner with Berlin skyline and random reason ([a1243a8](https://github.com/vergissberlin/vergissberlin-cli/commit/a1243a802a23a9831a5ebd564840742b48a3d1f8))
+* **cli:** replace THATS COOL banner with Berlin skyline and random reason ([17e5508](https://github.com/vergissberlin/vergissberlin-cli/commit/17e5508f121b0c38a14139844a0c3f104b558dcc))
+
 ## [0.1.5](https://github.com/vergissberlin/vergissberlin-cli/compare/v0.1.4...v0.1.5) (2026-07-28)
 
 

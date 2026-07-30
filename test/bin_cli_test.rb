@@ -30,13 +30,14 @@ class BinCliTest < Minitest::Test
     assert_includes stdout, 'Usage:'
   end
 
-  def test_cli_default_banner
+  def test_cli_default_skyline_and_reason
     stdout, stderr, status = Open3.capture3(
       { 'NO_COLOR' => '1', 'FORCE_COLOR' => '0' },
       RbConfig.ruby, BIN_PATH
     )
     assert status.success?, "Process failed: #{stderr}"
-    assert_includes stdout, '_______'
+    assert_includes stdout, Vergissberlin::Skyline::LINES.last
+    assert_includes stdout, Vergissberlin::Reasons::HEADLINE
     refute_includes stdout, "\e["
   end
 end

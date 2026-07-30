@@ -2,32 +2,23 @@
 
 require 'optparse'
 require 'vergissberlin/version'
+require 'vergissberlin/reasons'
+require 'vergissberlin/skyline'
 
 module Vergissberlin
   # Command-line interface for the vergissberlin gem.
   class CLI
-    # Properly aligned figlet "big" banner for "THATS COOL".
-    BANNER_LINES = [
-      ' _______ _    _       _______ _____    _____ ____   ____  _      ',
-      '|__   __| |  | |   /\\|__   __/ ____|  / ____/ __ \\ / __ \\| |     ',
-      '   | |  | |__| |  /  \\  | | | (___   | |   | |  | | |  | | |     ',
-      '   | |  |  __  | / /\\ \\ | |  \\___ \\  | |   | |  | | |  | | |     ',
-      '   | |  | |  | |/ ____ \\| |  ____) | | |___| |__| | |__| | |____ ',
-      '   |_|  |_|  |_/_/    \\_\\_| |_____/   \\_____\\____/ \\____/|______|'
-    ].freeze
-
-    BANNER = (['', ''] + BANNER_LINES + ['', '']).join("\n").freeze
-
     RESET = "\e[0m"
 
-    def self.run(argv = ARGV, out: $stdout, err: $stderr)
-      new(argv, out: out, err: err).run
+    def self.run(argv = ARGV, out: $stdout, err: $stderr, random: Random.new)
+      new(argv, out: out, err: err, random: random).run
     end
 
-    def initialize(argv, out: $stdout, err: $stderr)
+    def initialize(argv, out: $stdout, err: $stderr, random: Random.new)
       @argv = argv.dup
       @out = out
       @err = err
+      @random = random
     end
 
     def run
@@ -44,7 +35,7 @@ module Vergissberlin
       return show_help if options[:help]
       return show_version if options[:version]
 
-      @out.print render_banner
+      @out.print render_skyline, render_reason
       0
     end
 
@@ -80,13 +71,17 @@ module Vergissberlin
       end
     end
 
-    def render_banner
-      return BANNER unless colorize?
-
-      colored = BANNER_LINES.map.with_index do |line, row|
-        rainbow_line(line, row)
+    def render_skyline
+      lines = Skyline::LINES
+      if colorize?
+        lines = lines.map.with_index { |line, row| rainbow_line(line, row) }
       end
-      "\n\n#{colored.join("\n")}\n\n"
+      "\n\n#{lines.join("\n")}\n\n"
+    end
+
+    # The reason stays uncolored so it reads well on any background.
+    def render_reason
+      "  #{Reasons::HEADLINE}\n  #{Reasons.sample(random: @random)}\n\n"
     end
 
     def colorize?

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'vergissberlin/version'
+require 'vergissberlin/reasons'
+require 'vergissberlin/skyline'
 require 'vergissberlin/cli'
 
 module Vergissberlin

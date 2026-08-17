@@ -57,7 +57,14 @@ jobs:
         run: gem build vergissberlin.gemspec
 
       - name: Publish to RubyGems.org
+        id: rubygems
+        continue-on-error: true
         run: gem push vergissberlin-*.gem
+
+      - name: Warn if RubyGems.org publish failed
+        if: steps.rubygems.outcome == 'failure'
+        run: |
+          echo "::warning::Publish to RubyGems.org failed (likely an ownership/API-key issue on rubygems.org). GitHub Packages publish will still proceed. See https://rubygems.org/gems/vergissberlin for current owners."
 
       - name: Publish to GitHub Packages
         run: |

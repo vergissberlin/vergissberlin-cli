@@ -4,6 +4,7 @@ require 'optparse'
 require 'vergissberlin/version'
 require 'vergissberlin/reasons'
 require 'vergissberlin/skyline'
+require 'vergissberlin/info'
 
 module Vergissberlin
   # Command-line interface for the vergissberlin gem.
@@ -34,6 +35,7 @@ module Vergissberlin
     def dispatch(options)
       return show_help if options[:help]
       return show_version if options[:version]
+      return show_info if @argv.first == 'info'
 
       @out.print render_skyline, render_reason
       0
@@ -46,6 +48,11 @@ module Vergissberlin
 
     def show_version
       @out.puts Vergissberlin::VERSION
+      0
+    end
+
+    def show_info
+      @out.print render_info
       0
     end
 
@@ -63,7 +70,7 @@ module Vergissberlin
 
     def build_parser(options)
       OptionParser.new do |opts|
-        opts.banner = 'Usage: vergissberlin [options]'
+        opts.banner = "Usage: vergissberlin [options]\n       vergissberlin info"
         opts.on('-v', '--version', 'Show installed version') do
           options[:version] = true
         end
@@ -82,6 +89,10 @@ module Vergissberlin
     # The reason stays uncolored so it reads well on any background.
     def render_reason
       "  #{Reasons::HEADLINE}\n  #{Reasons.sample(random: @random)}\n\n"
+    end
+
+    def render_info
+      "\n#{Info.render(colorize: colorize?)}\n"
     end
 
     def colorize?

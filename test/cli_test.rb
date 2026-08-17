@@ -134,6 +134,16 @@ class CliTest < Minitest::Test
     end
   end
 
+  def test_info_command
+    out = StringIO.new
+    status = Vergissberlin::CLI.run(['info'], out: out)
+
+    assert_equal 0, status
+    assert_includes out.string, 'André Lademann'
+    assert_includes out.string, 'github.com/vergissberlin'
+    assert_includes out.string, 'blog.andrelademann.de'
+  end
+
   def test_invalid_option
     out = StringIO.new
     err = StringIO.new

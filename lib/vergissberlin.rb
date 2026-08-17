@@ -3,6 +3,7 @@
 require 'vergissberlin/version'
 require 'vergissberlin/reasons'
 require 'vergissberlin/skyline'
+require 'vergissberlin/info'
 require 'vergissberlin/cli'
 
 module Vergissberlin

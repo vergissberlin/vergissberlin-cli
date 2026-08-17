@@ -40,4 +40,15 @@ class BinCliTest < Minitest::Test
     assert_includes stdout, Vergissberlin::Reasons::HEADLINE
     refute_includes stdout, "\e["
   end
+
+  def test_cli_info_command
+    stdout, stderr, status = Open3.capture3(
+      RbConfig.ruby, BIN_PATH, 'info'
+    )
+    stdout.force_encoding(Encoding::UTF_8)
+    assert status.success?, "Process failed: #{stderr}"
+    assert_includes stdout, 'André Lademann'
+    assert_includes stdout, 'github.com/vergissberlin'
+    assert_includes stdout, 'blog.andrelademann.de'
+  end
 end

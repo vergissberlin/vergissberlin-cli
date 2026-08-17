@@ -53,6 +53,7 @@ Ruby 3.2+ is required.
 
 ```bash
 vergissberlin            # print the Berlin skyline + a random reason to leave
+vergissberlin info       # print info about the author, GitHub & blog links
 vergissberlin --version  # print installed version (also -v)
 vergissberlin --help
 ```

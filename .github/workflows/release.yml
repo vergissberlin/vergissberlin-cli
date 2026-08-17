@@ -64,3 +64,35 @@ jobs:
           gem push --key github \
             --host "https://rubygems.pkg.github.com/${{ github.repository_owner }}" \
             vergissberlin-*.gem
+
+  update-homebrew-tap:
+    needs: release-please
+    if: needs.release-please.outputs.release_created == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Update Formula/vergissberlin.rb in vergissberlin/homebrew-tap
+        env:
+          TAG: ${{ needs.release-please.outputs.tag_name }}
+          HOMEBREW_TAP_TOKEN: ${{ secrets.HOMEBREW_TAP_TOKEN }}
+        run: |
+          set -euo pipefail
+          version="${TAG#v}"
+          url="https://github.com/${{ github.repository }}/archive/refs/tags/${TAG}.tar.gz"
+          sha256=$(curl -sL "$url" | sha256sum | cut -d' ' -f1)
+
+          git clone "https://x-access-token:${HOMEBREW_TAP_TOKEN}@github.com/vergissberlin/homebrew-tap.git" tap
+          cd tap
+
+          sed -i \
+            -e "s#url \".*vergissberlin-cli/archive/refs/tags/v[^\"]*\"#url \"${url}\"#" \
+            -e "s#sha256 \"[a-f0-9]\{64\}\"#sha256 \"${sha256}\"#" \
+            Formula/vergissberlin.rb
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git diff --quiet Formula/vergissberlin.rb && exit 0
+          git commit -am "chore: bump vergissberlin formula to ${version}"
+          git push origin main

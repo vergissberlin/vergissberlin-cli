@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.1.7](https://github.com/vergissberlin/vergissberlin-cli/compare/v0.1.6...v0.1.7) (2026-08-17)
+
+
+### Features
+
+* auto-update Homebrew tap formula on release ([71ca160](https://github.com/vergissberlin/vergissberlin-cli/commit/71ca1600e4cb1a48a569b265dcf150ba177caf4a))
+* auto-update Homebrew tap formula on release ([9badeeb](https://github.com/vergissberlin/vergissberlin-cli/commit/9badeeb488b2ee65b4a08d4f9e954b5ebc93b3c8))
+
 ## [0.1.6](https://github.com/vergissberlin/vergissberlin-cli/compare/v0.1.5...v0.1.6) (2026-07-30)
 
 

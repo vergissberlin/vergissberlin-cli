@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.1.8](https://github.com/vergissberlin/vergissberlin-cli/compare/v0.1.7...v0.1.8) (2026-08-17)
+
+
+### Features
+
+* **cli:** add info command with author details and links ([d44da2c](https://github.com/vergissberlin/vergissberlin-cli/commit/d44da2c04d7315416a25c6fb3710f4d83861a37a))
+* **cli:** add info command with author details and links ([089d3d5](https://github.com/vergissberlin/vergissberlin-cli/commit/089d3d57ad45280327d418affd34677341c6e043))
+
+
+### Bug Fixes
+
+* don't let RubyGems.org publish failures block other publish steps ([64f5c25](https://github.com/vergissberlin/vergissberlin-cli/commit/64f5c251994c37f7018cdac989a6f67291e96380))
+* don't let RubyGems.org publish failures block release ([a974e99](https://github.com/vergissberlin/vergissberlin-cli/commit/a974e99642e811a3e4fa22e36894667cc7adf9b4))
+
 ## [0.1.7](https://github.com/vergissberlin/vergissberlin-cli/compare/v0.1.6...v0.1.7) (2026-08-17)
 
 

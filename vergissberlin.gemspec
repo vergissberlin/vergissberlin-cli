@@ -32,7 +32,7 @@ Gem::Specification.new do |spec|
   spec.executables = ['vergissberlin']
   spec.require_paths = ['lib']
 
-  spec.add_development_dependency 'bundler', '>= 2.4', '< 3.0'
+  spec.add_development_dependency 'bundler', '>= 2.4', '< 4.1.2'
   spec.add_development_dependency 'minitest', '~> 5.25'
   spec.add_development_dependency 'rake', '~> 13.2'
   spec.add_development_dependency 'simplecov', '~> 0.22'
